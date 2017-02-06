@@ -26,16 +26,38 @@ html, body {
 <main id="container"></main>
 <script type="text/babel">
   (function(){
-    var _TBD_ = React.createClass({
+    var Display = React.createClass({
       render: function() {
         return (
-          <div></div>
+          <div>
+            <p>{this.props.color}</p>
+            <p>{this.props.num}</p>
+            <p>{this.props.size}</p>
+          </div>
+        );
+      }
+    });
+    var Label = React.createClass({
+      render: function() {
+        return (
+          <Display color={this.props.color}
+                  num={this.props.num}
+                  size={this.props.size} />
+        );
+      }
+    });
+    var Shirt = React.createClass({
+      render: function() {
+        return (
+          <Label color={this.props.color}
+                  num={this.props.num}
+                  size={this.props.size} />
         );
       }
     });
     ReactDOM.render(
       <section>
-        <_TBD_ />
+        <Shirt color="steelblue" num="3.14" size="medium" />
       </section>,
       document.querySelector("#container")
     );
