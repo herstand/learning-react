@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Chapter 7!</title>
+<style type='text/css'>
+* {
+  box-sizing:border-box;
+}
+html, body {
+  padding:0;
+  margin:0;
+  width:100%;
+  height:100%;
+}
+#container {
+  width:100%;
+  height:100%;
+  padding:50px;
+}
+</style>
+<script src="react/react.js"></script>
+<script src="react/react-dom.js"></script>
+<script src="react/babel.min.js"></script>
+</head>
+<body>
+<main id="container"></main>
+<script type="text/babel">
+  (function(){
+    var Square = React.createClass({
+      render: function() {
+        var squareStyle = {
+          height: 150,
+          backgroundColor: this.props.color
+        };
+        return (
+          <div style={squareStyle}></div>
+        );
+      }
+    });
+    var Label = React.createClass({
+      render: function() {
+        var labelStyle = {
+          fontFamily: "sans-serif",
+          fontWeight: "bold",
+          padding: 13,
+          margin: 0
+        };
+        return (
+          <p style={labelStyle}>{this.props.color}</p>
+        );
+      }
+    });
+    var Card = React.createClass({
+      render: function() {
+        var cardStyle = {
+          height: 200,
+          width: 150,
+          padding: 0,
+          backgroundColor: "#FFF",
+          WebkitFilter: "drop-shadow(0px 0px 5px #666)",
+          filter: "drop-shadow(0px 0px 5px #666)"
+        };
+        return (
+          <div style={cardStyle}>
+            <Square color={this.props.color}/>
+            <Label color={this.props.color} />
+          </div>
+        );
+      }
+    });
+    ReactDOM.render(
+      <section>
+        <Card color="#FF6663" />
+      </section>,
+      document.querySelector("#container")
+    );
+  }());
+</script>
+</body>
+</html>
