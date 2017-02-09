@@ -66,15 +66,53 @@ html, body {
             <Label color={this.props.color} />
           </div>
         );
+        /****** Equivalent JavaScript: ******
+         * return React.createElement(
+         *   "div",
+         *   { style: cardStyle },
+         *   React.createElement(Square, { color: this.props.color }),
+         *   React.createElement(Label, { color: this.props.color })
+         * );
+        */
       }
     });
     ReactDOM.render(
       <section>
-        <Card color="#FF6663" />
+        <Card
+        /* this comment
+           goes across
+           multiple lines
+           but is contained
+           within a tag */
+        color="#FF6663" // end of line comment
+        />
+        {/* I am a child comment */}
       </section>,
       document.querySelector("#container")
     );
   }());
+
+  /****** Invalid JSX ******
+   *  // Can't have multiple root elements
+   *  ReactDOM.render(
+   *     <Letter>B</Letter>
+   *     <Letter>E</Letter>
+   *     <Letter>I</Letter>
+   *     <Letter>O</Letter>
+   *     <Letter>U</Letter>,
+   *     document.querySelector("#container")
+   *   );
+   *
+   *  // Can't used JS' reserved words, like class
+   *  ReactDOM.render(
+   *     <div class="slideIn">
+   *       <p class="emphasis">Gabagool!</p>
+   *       <Label/>
+   *     </div>
+   *     document.querySelector("#container")
+   *   );
+   *
+  */
 </script>
 </body>
 </html>
