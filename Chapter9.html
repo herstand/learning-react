@@ -42,18 +42,17 @@ html, body {
     });
 
     var destination = document.querySelector("#container");
+    var colors = ["#393E41", "#E94F37", "#1C89BF", "#A1D363",
+                  "#85FFC7", "#297373", "#FF8552", "#A40E4C"];
+    var renderData = [];
 
-    function showCircle() {
-      var colors = ["#393E41", "#E94F37", "#1C89BF", "#A1D363"];
-      var ran = Math.floor(Math.random() * colors.length);
-
-      // return a Circle with a randomly chosen color
-      return <Circle bgColor={colors[ran]}/>
+    for (var i = 0; i < colors.length; i++) {
+      renderData.push(<Circle bgColor={colors[i]}/>);
     }
 
     ReactDOM.render(
       <div>
-        {showCircle()}
+        {renderData}
       </div>,
       destination
     );
