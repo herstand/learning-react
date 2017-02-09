@@ -60,9 +60,20 @@ html, body {
     });
 
     var CounterParent = React.createClass({
+      handleResize: function(e) {
+        this.setState({
+          count: window.innerWidth + window.innerHeight
+        });
+      },
+      componentDidMount: function() {
+        window.addEventListener("resize", this.handleResize);
+      },
+      componentWillUnmount: function() {
+        window.removeEventListener("resize", this.handleResize);
+      },
       getInitialState: function() {
         return {
-          count: 0
+          count: window.innerWidth + window.innerHeight
         };
       },
       increase: function(e) {
