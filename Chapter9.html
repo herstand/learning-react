@@ -23,15 +23,39 @@ html, body {
 <main id="container"></main>
 <script type="text/babel">
   (function(){
-    var _TBD_ = React.createClass({
+    var Circle = React.createClass({
       render: function() {
-        return ();
+        var circleStyle = {
+          padding: 10,
+          margin: 20,
+          display: "inline-block",
+          backgroundColor: this.props.bgColor,
+          borderRadius: "50%",
+          width: 100,
+          height: 100
+        }
+        return (
+          <div style={circleStyle}>
+          </div>
+        );
       }
     });
 
+    var destination = document.querySelector("#container");
+
+    function showCircle() {
+      var colors = ["#393E41", "#E94F37", "#1C89BF", "#A1D363"];
+      var ran = Math.floor(Math.random() * colors.length);
+
+      // return a Circle with a randomly chosen color
+      return <Circle bgColor={colors[ran]}/>
+    }
+
     ReactDOM.render(
-      <_TBD_/>,
-      document.querySelector("#container")
+      <div>
+        {showCircle()}
+      </div>,
+      destination
     );
   }());
 </script>
