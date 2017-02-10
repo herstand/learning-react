@@ -15,6 +15,30 @@ html, body {
   padding:50px;
   background-color:#FFFFFF;
 }
+.colorSquare {
+  box-shadow: 0px 0px 25px 0px #333;
+  width: 242px;
+  height: 242px;
+  margin-bottom: 15px;
+}
+.colorArea input {
+  padding: 10px;
+  font-size: 16px;
+  border: 2px solid #CCC;
+}
+.colorArea button {
+  padding: 10px;
+  font-size: 16px;
+  margin: 10px;
+  background-color: #666;
+  color: #FFF;
+  border: 2px solid #666;
+}
+.colorArea button:hover {
+  background-color: #111;
+  border-color: #111;
+  cursor: pointer;
+}
 </style>
 <script src="react/react.js"></script>
 <script src="react/react-dom.js"></script>
@@ -26,15 +50,41 @@ html, body {
   (function(){
     var destination = document.querySelector("#container");
 
-    var _TBD_ = React.createClass({
-      render: function() {
-          return (<div></div>);
+     var Colorizer = React.createClass({
+        getInitialState: function() {
+          return {
+              color: '',
+              bgColor: ''
+          }
+        },
+        colorValue: function(e) {
+          this.setState({color: e.target.value});
+        },
+        setNewColor: function(e){
+          this.setState({bgColor: this.state.color});
+          e.preventDefault();
+        },
+        render: function() {
+          var squareStyle = {
+            backgroundColor: this.state.bgColor
+          };
+
+          return (
+            <div className="colorArea">
+              <div style={squareStyle} className="colorSquare"></div>
+
+              <form onSubmit={this.setNewColor}>
+                <input onChange={this.colorValue} placeholder="Enter a color value"></input>
+                <button type="submit">go</button>
+              </form>
+            </div>
+          );
         }
     });
 
     ReactDOM.render(
       <div>
-        <_TBD_/>
+        <Colorizer/>
       </div>,
       destination
     );
